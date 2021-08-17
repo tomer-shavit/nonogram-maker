@@ -4,11 +4,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import './main.css';
+import { BoardProvider } from './BoardContext';
 
 ReactDOM.render(
   <StrictMode>
     <ColorModeScript />
-    <App />
+    <BoardProvider>
+      <App />
+    </BoardProvider>
   </StrictMode>,
   document.getElementById('root')
 );
