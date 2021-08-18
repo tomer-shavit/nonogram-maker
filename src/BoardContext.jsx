@@ -29,8 +29,7 @@ export const BoardProvider = ({ children }) => {
   const [constraintsY, setConstraintsY] = useState(initConstraints(height));
   const [constraints, setConstraints] = useState([constraintsY, constraintsX]);
   const [board, setBoard] = useState(makeBoard(length, height));
-
-  useEffect(() => {}, [board]);
+  const [doneLoading, setDoneLoading] = useState(false);
 
   useEffect(() => {
     setConstraintsX(changeConstraintsX(length));
@@ -42,7 +41,6 @@ export const BoardProvider = ({ children }) => {
 
   useEffect(() => {
     setBoard(editBoardX(length));
-    console.log(board);
   }, [length]);
 
   useEffect(() => {
@@ -51,6 +49,7 @@ export const BoardProvider = ({ children }) => {
 
   useEffect(() => {
     setConstraints([constraintsY, constraintsX]);
+    setDoneLoading(true);
   }, [constraintsX, constraintsY]);
 
   const changeConstraintsY = len => {
@@ -109,21 +108,21 @@ export const BoardProvider = ({ children }) => {
   };
 
   const editCell = (row, col, clicked) => {
-    const newRow = board[row];
+    const newRow = board[row].slice(0);
     newRow[col] = clicked ? 1 : 0;
-    setBoard(board.map((row, i) => (i === row ? newRow : row)));
-    const newConstY = checkRow(row);
-    const newConstX = checkCol(col);
+    setBoard([...board.slice(0, row), newRow, ...board.slice(row + 1, 21)]); // Changes the board
+    const newConstY = checkRow(row); // edit the right constraint in the left array
+    const newConstX = checkCol(col); // edit the right constraint in the left array
     setConstraintsY([
       ...constraintsY.slice(0, row),
       newConstY,
       ...constraintsY.slice(row + 1, 21),
-    ]);
+    ]); // adding the constraint to the right place on the left side
     setConstraintsX([
       ...constraintsX.slice(0, col),
       newConstX,
       ...constraintsX.slice(col + 1, 21),
-    ]);
+    ]); // adding the right constraint in the right side
   };
 
   const resetBoard = () => {
@@ -139,7 +138,7 @@ export const BoardProvider = ({ children }) => {
     return false;
   };
 
-  const isLastInCol = index => {
+  const isLastInCol = (index, col) => {
     if (index === board.length - 1) {
       return true;
     }
@@ -171,7 +170,7 @@ export const BoardProvider = ({ children }) => {
     let block = 0;
     for (let i = 0; i < board.length; i++) {
       if (board[i][col] === 1) {
-        if (isLastInCol(i)) {
+        if (isLastInCol(i, col)) {
           block += 1;
           constraints.push(block);
         } else if (board[i + 1][col] === 1) {
@@ -199,6 +198,8 @@ export const BoardProvider = ({ children }) => {
         board,
         editCell,
         resetBoard,
+        doneLoading,
+        setDoneLoading,
       }}
     >
       {children}
