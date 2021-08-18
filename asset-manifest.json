@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/nonogram-maker/static/css/main.eea58057.chunk.css",
-    "main.js": "/nonogram-maker/static/js/main.3c24ad21.chunk.js",
-    "main.js.map": "/nonogram-maker/static/js/main.3c24ad21.chunk.js.map",
+    "main.js": "/nonogram-maker/static/js/main.cc7f3f35.chunk.js",
+    "main.js.map": "/nonogram-maker/static/js/main.cc7f3f35.chunk.js.map",
     "runtime-main.js": "/nonogram-maker/static/js/runtime-main.3cbd9225.js",
     "runtime-main.js.map": "/nonogram-maker/static/js/runtime-main.3cbd9225.js.map",
     "static/js/2.8a7e2c31.chunk.js": "/nonogram-maker/static/js/2.8a7e2c31.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.3cbd9225.js",
     "static/js/2.8a7e2c31.chunk.js",
     "static/css/main.eea58057.chunk.css",
-    "static/js/main.3c24ad21.chunk.js"
+    "static/js/main.cc7f3f35.chunk.js"
   ]
 }
