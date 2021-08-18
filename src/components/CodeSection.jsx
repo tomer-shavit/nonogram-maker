@@ -4,12 +4,12 @@ import React from 'react';
 import { BoardContext } from '../BoardContext';
 
 export const CodeSection = React.memo(() => {
-  const { finalConstraints } = useContext(BoardContext);
+  const { constraints } = useContext(BoardContext);
 
   return (
     <Flex justifyContent="center" alignItems="center" width="80%">
       <Code color="#141414" textAlign="center">
-        {JSON.stringify(finalConstraints)}
+        {JSON.stringify(constraints)}
       </Code>
     </Flex>
   );
