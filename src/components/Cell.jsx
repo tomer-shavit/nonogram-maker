@@ -3,9 +3,13 @@ import { useContext, useState } from 'react';
 import { BoardContext } from '../BoardContext';
 
 export const Cell = ({ row, col }) => {
-  const { editCell } = useContext(BoardContext);
+  const { editCell, setRow, setCol, setChange, change } =
+    useContext(BoardContext);
   const [clicked, setClicked] = useState(false);
   const getClicked = () => {
+    setRow(row);
+    setCol(col);
+    setChange(!change);
     editCell(row, col, !clicked);
     setClicked(!clicked);
   };
