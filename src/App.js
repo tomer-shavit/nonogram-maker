@@ -26,6 +26,9 @@ function App() {
             Tomer Shavit
           </Link>
         </Flex>
+        <Text fontSize="0.75em" color="white">
+          Intro2CS 2021
+        </Text>
       </Flex>
     </ChakraProvider>
   );
